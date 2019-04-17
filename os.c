@@ -1,111 +1,35 @@
 #include<stdio.h>
-#include<conio.h>
-int fr[3];
-void main()
+int main()
 {
-	void display();
-	int i,j,page[12]={2,3,2,1,5,2,4,5,3,2,5,2};
-	int flag1=0,flag2=0,pf=0,frsize=3,top=0;
-
-	clrscr();
-
-	for(i=0;i<3;i++)
-	{
-		fr[i]=-1;
-	}
-
-	for(j=0;j<12;j++)
-		{
-		flag1=0;
-		flag2=0;
-		for(i=0;i<12;i++)
-		{
-				if(fr[i]==page[j])
-				{
-				flag1=1;
-				flag2=1;
-				break;
-				}
-		}
-
-
-		if(flag1==0)
-		{
-		for(i=0;i<frsize;i++)
-		{
-		if(fr[i]==-1)
-		{
-				fr[i]=page[j];
-				flag2=1;
-				break;
-		}
-		}
-		}
-
-		if(flag2==0)
-		{
-		fr[top]=page[j];
-		top++;
-		pf++;
-		if(top>=frsize)
-				top=0;
-		}
-
-		display();
-	}
-printf("Number of page faults  : %d ",pf);
-getch();
+int i,j,n,a[50],frame[10],no,k,avail,count=0;
+            printf("\n ENTER THE NUMBER OF PAGES:\n");
+scanf("%d",&n);
+            printf("\n ENTER THE PAGE NUMBER :\n");
+            for(i=1;i<=n;i++)
+            scanf("%d",&a[i]);
+            printf("\n ENTER THE NUMBER OF FRAMES :");
+            scanf("%d",&no);
+for(i=0;i<no;i++)
+            frame[i]= -1;
+                        j=0;
+                        printf("\tref string\t page frames\n");
+for(i=1;i<=n;i++)
+                        {
+                                    printf("%d\t\t",a[i]);
+                                    avail=0;
+                                    for(k=0;k<no;k++)
+if(frame[k]==a[i])
+                                                avail=1;
+                                    if (avail==0)
+                                    {
+                                                frame[j]=a[i];
+                                                j=(j+1)%no;
+                                                count++;
+                                                for(k=0;k<no;k++)
+                                                printf("%d\t",frame[k]);
 }
-
-
-void display()
-{
-int i;
-printf("\n");
-for(i=0;i<3;i++)
-printf("%d\t",fr[i]);
-}#include<stdio.h>
-#include<conio.h>
-int fr[3];
-void main()
-{
-	void display();
-	int i,j,page[12]={2,3,2,1,5,2,4,5,3,2,5,2};
-	int flag1=0,flag2=0,pf=0,frsize=3,top=0;
-
-	clrscr();
-
-	for(i=0;i<3;i++)
-	{
-		fr[i]=-1;
-	}
-
-	for(j=0;j<12;j++)
-		{
-		flag1=0;
-		flag2=0;
-		for(i=0;i<12;i++)
-		{
-				if(fr[i]==page[j])
-				{
-				flag1=1;
-				flag2=1;
-				break;
-				}
-		}
-
-
-		display();
-	}
-printf("Number of page faults  : %d ",pf);
-getch();
+                                    printf("\n");
 }
-
-
-void display()
-{
-int i;
-printf("\n");
-for(i=0;i<3;i++)
-printf("%d\t",fr[i]);
+                        printf("Page Fault Is %d",count);
+                        return 0;
 }
